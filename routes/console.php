@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
+//デフォルトコード
+// Artisan::command('inspire', function () {
+//     $this->comment(Inspiring::quote());
+// })->purpose('Display an inspiring quote');
+
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+})->describe('Display an inspiring quote');
