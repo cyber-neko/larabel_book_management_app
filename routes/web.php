@@ -26,17 +26,24 @@ use App\Models\Book;
  * 本の一覧表示(books.blade.php)
  */
 Route::get('/', function () {
-    return view('books');
+    $books = Book::orderBy('created_at', 'asc')->get();
+    // view関数は第2引数に使用するデータを配列で渡す
+    // return view('books');
+    return view('books', [
+        'books' => $books
+    ]);
+    //return view('books',compact('books')); //も同じ意味
 });
 
 /**
  * 本を追加 
  */
 Route::post('/books', function (Request $request) {
+    dd($request);
     //バリデーション
     //ルールを記載する
     $validator = Validator::make($request->all(), [
-        'item_name' => 'required|max:255|min3',
+        'item_name' => 'required|max:255|min:3',
     ]);
 
     //バリデーション:エラー 
