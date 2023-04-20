@@ -28,7 +28,6 @@ use App\Models\Book;
 Route::get('/', function () {
     $books = Book::orderBy('created_at', 'asc')->get();
     // view関数は第2引数に使用するデータを配列で渡す
-    // return view('books');
     return view('books', [
         'books' => $books
     ]);
@@ -61,9 +60,9 @@ Route::post('/books', function (Request $request) {
     // Eloquentモデル（登録処理）
     $books = new Book;
     $books->item_name = $request->item_name;
-    $books->item_number = '1';
-    $books->item_amount = '1000';
-    $books->published = '2017-03-07 00:00:00';
+    $books->item_number = $request->item_number;
+    $books->item_amount = $request->item_amount;
+    $books->published = $request->published;
     $books->save();
     return redirect('/');
 });
