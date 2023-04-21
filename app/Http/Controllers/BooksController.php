@@ -11,7 +11,7 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('created_at', 'asc')->get();
+        $books = Book::orderBy('created_at', 'asc')->paginate(3);
         // view関数は第2引数に使用するデータを配列で渡す
         return view('books', [
             'books' => $books
