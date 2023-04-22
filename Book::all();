@@ -1,0 +1,27 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#6584
+    [34mall[39m: [
+      [34;4mApp\Models\Book[39;24m {#7199
+        [34mid[39m: [35m1[39m,
+        [34muser_id[39m: [35m1[39m,
+        [34mitem_name[39m: "[32mPHP基礎口座[39m",
+        [34mitem_number[39m: [35m5[39m,
+        [34mitem_amount[39m: [35m2000[39m,
+        [34mitem_img[39m: "[32mpotita_icon.jpeg[39m",
+        [34mpublished[39m: "[32m2023-04-22 00:00:00[39m",
+        [34mcreated_at[39m: "[32m2023-04-22 11:37:50[39m",
+        [34mupdated_at[39m: "[32m2023-04-22 11:37:50[39m",
+      },
+      [34;4mApp\Models\Book[39;24m {#7200
+        [34mid[39m: [35m2[39m,
+        [34muser_id[39m: [35m1[39m,
+        [34mitem_name[39m: "[32mPHP基礎口座2[39m",
+        [34mitem_number[39m: [35m5[39m,
+        [34mitem_amount[39m: [35m1000[39m,
+        [34mitem_img[39m: "[32mpotita_icon_2.jpeg[39m",
+        [34mpublished[39m: "[32m2023-04-01 00:00:00[39m",
+        [34mcreated_at[39m: "[32m2023-04-22 11:44:26[39m",
+        [34mupdated_at[39m: "[32m2023-04-22 11:44:26[39m",
+      },
+    ],
+  }
+
