@@ -15,9 +15,14 @@ use App\Http\Controllers\BooksController;
 |
 */
 
-//デフォルトコード
-// Route::get('/', function () {
-//     return view('welcome');
+/**
+ * 認証チェック
+ * groupでログインしていないと表示できないページを設定
+ */
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::get('/', function () {
+//         return view('welcome');
+//     });
 // });
 
 /**
@@ -30,10 +35,14 @@ Route::get('/', [BooksController::class, 'index']);
  */
 Route::post('/books', [BooksController::class, 'store']);
 
-//更新画面
+/**
+ * 更新画面
+ */
 Route::post('/booksedit/{books}', [BooksController::class, 'edit']);
 
-//更新処理
+/**
+ * 更新処理
+ */
 Route::post('/books/update', [BooksController::class, 'update']);
 
 /**
@@ -43,8 +52,4 @@ Route::delete('/book/{book}', [BooksController::class, 'destroy']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [BooksController::class, 'index'])->name('home');

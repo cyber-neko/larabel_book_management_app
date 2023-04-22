@@ -11,7 +11,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct() //クラス呼び出し時に最初に実行される
     {
         $this->middleware('auth');
     }

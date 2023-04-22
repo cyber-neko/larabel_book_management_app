@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Validator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class BooksController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $books = Book::orderBy('created_at', 'asc')->paginate(3);
+        $books = Book::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'asc')
+            ->paginate(3);
         // view関数は第2引数に使用するデータを配列で渡す
         return view('books', [
             'books' => $books
@@ -19,10 +26,13 @@ class BooksController extends Controller
         //return view('books',compact('books')); //も同じ意味
     }
 
-    public function edit(Book $books)
+    public function edit($book_id)
     {
         //{books}id 値を取得 => Book $books id 値の1レコード取得
-        return view('booksedit', ['book' => $books]);
+        $books = Book::where('user_id', Auth::user()->id)->find($book_id);
+        return view('booksedit', [
+            'book' => $books
+        ]);
     }
 
     public function update(Request $request)
@@ -43,7 +53,8 @@ class BooksController extends Controller
         }
 
         //データ更新
-        $books = Book::find($request->id);
+        $books = Book::where('user_id', Auth::user()->id)->find($request->id);
+        $books->user_id  = Auth::user()->id;
         $books->item_name   = $request->item_name;
         $books->item_number = $request->item_number;
         $books->item_amount = $request->item_amount;
@@ -75,6 +86,7 @@ class BooksController extends Controller
 
         // Eloquentモデル（登録処理）
         $books = new Book;
+        $books->user_id  = Auth::user()->id;
         $books->item_name = $request->item_name;
         $books->item_number = $request->item_number;
         $books->item_amount = $request->item_amount;
