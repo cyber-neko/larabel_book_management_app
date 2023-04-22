@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('item_name');
             $table->integer('item_number');
             $table->integer('item_amount');
+            $table->string('item_img');
             $table->dateTime('published');
             $table->timestamps();
         });

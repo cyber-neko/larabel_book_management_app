@@ -84,12 +84,21 @@ class BooksController extends Controller
                 ->withErrors($validator);
         }
 
+        $file = $request->file('item_img'); //file取得
+        if (!empty($file)) {                //fileが空かチェック
+            $filename = $file->getClientOriginalName();   //ファイル名を取得
+            $move = $file->move('../public/upload/', $filename);  //ファイルを移動
+        } else {
+            $filename = "";
+        }
+
         // Eloquentモデル（登録処理）
         $books = new Book;
         $books->user_id  = Auth::user()->id;
         $books->item_name = $request->item_name;
         $books->item_number = $request->item_number;
         $books->item_amount = $request->item_amount;
+        $books->item_img = $filename;
         $books->published = $request->published;
         $books->save();
         return redirect('/')->with('message', '本登録が完了しました'); //'message'変数に値を登録
